@@ -79,6 +79,8 @@ class CPU:
             if self.reg[reg_b] == 0:
                 raise Exception("Cannot divide by zero")
             self.reg[reg_a] = self.reg[reg_a] / self.reg[reg_b]
+        elif op == "DEC":
+            self.reg[reg_a] -= 1
         else:
             raise Exception("Unsupported ALU operation")
 
@@ -170,7 +172,8 @@ class CPU:
             0b1100: "SHL",
             0b1101: "SHR",
             0b0100: "MOD",
-            0b0011: "DIV"
+            0b0011: "DIV",
+            0b0110: "DEC"
         }
 
         SPC_OPS = {
