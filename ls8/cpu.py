@@ -236,10 +236,10 @@ class CPU:
                     self.pc += 1 + OPERANDS
             else:
                 if ALU == 1:
-                    registers = self.get_registers(1, 2)
+                    registers = self.get_registers(1, OPERANDS)
                     if not registers:
                         return False
-                    self.alu(ALU_OPS[OPCODE], registers[0], registers[1])
+                    self.alu(ALU_OPS[OPCODE], registers[0], registers[OPERANDS - 1])
                 elif not OPCODE_to_operation(self, OPCODE):
                     running = False
                     break
