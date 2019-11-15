@@ -222,6 +222,12 @@ class CPU:
             cpu.reg[registers[0]] = MDR
             cpu.reg[7] += 1
 
+        def ADDI(cpu):
+            registers = cpu.get_registers(1, 1)
+            if not registers:
+                return False
+            cpu.reg[registers[0]] += cpu.ram_read(cpu.pc + 2)
+
         def HLT(cpu):
             return False
 
@@ -231,7 +237,8 @@ class CPU:
                 0b0111: PRN,
                 0b0101: PUSH,
                 0b0110: POP,
-                0b0001: HLT
+                0b0001: HLT,
+                0b1111: ADDI
             }
             # Get the function from switcher dictionary
             if opcode not in operations:
