@@ -61,6 +61,8 @@ class CPU:
                 self.fl = 0b001
             elif a > b:
                 self.fl = 0b010
+        elif op == "AND":
+            self.reg[reg_a] = self.reg[reg_a] & self.reg[reg_b]
         else:
             raise Exception("Unsupported ALU operation")
 
@@ -144,7 +146,8 @@ class CPU:
         ALU_OPS = {
             0b0010: "MUL",
             0b0111: "CMP",
-            0b0000: "ADD"
+            0b0000: "ADD",
+            0b1000: "AND"
         }
 
         SPC_OPS = {
