@@ -67,6 +67,8 @@ class CPU:
             self.reg[reg_a] = self.reg[reg_a] | self.reg[reg_b]
         elif op == "XOR":
             self.reg[reg_a] = self.reg[reg_a] ^ self.reg[reg_b]
+        elif op == "NOT":
+            self.reg[reg_a] = ~self.reg[reg_a]
         else:
             raise Exception("Unsupported ALU operation")
 
@@ -153,7 +155,8 @@ class CPU:
             0b0000: "ADD",
             0b1000: "AND",
             0b1010: "OR",
-            0b1011: "XOR"
+            0b1011: "XOR",
+            0b1001: "NOT"
         }
 
         SPC_OPS = {
